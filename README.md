@@ -8,6 +8,7 @@ Downloads a video from YouTube and converts some/all of it into a gif
     * You should have this already if you've installed yt-dlp, but if you don't then the program won't work
 
 # Usage
+```
 ytgif [-h|i|s|t|f|n|o]
 
     -h      Displays the help menu
@@ -25,3 +26,4 @@ ytgif [-h|i|s|t|f|n|o]
     -o      The output filename (without .gif). If not specified, names the file "output.gif"
 
 NOTE: If -n is not used, files will be overwritten if they exist.
+```

@@ -85,18 +85,18 @@ then
     OUTPUT="output.gif";
 fi
 
-if [[ $(echo "$SKIP_DURATION <= 0" | bc -l) && $(echo "$PLAY_DURATION <= 0" | bc -l) ]]
+if (( $(echo "$SKIP_DURATION <= 0" | bc -l) && $(echo "$PLAY_DURATION <= 0" | bc -l) ))
 then
     yt-dlp -f mp4 --no-playlist -o - $URL | ffmpeg $OVERWRITE -i - \
         -vf "fps=$FPS,scale=360:-1:flags=lanczos,split[s0][s1];
         [s0]palettegen[p];[s1][p]paletteuse" -loop 0 $OUTPUT;
-elif [[ $(echo "$PLAY_DURATION <= 0" | bc -l) ]]
+elif (( $(echo "$PLAY_DURATION <= 0" | bc -l) ))
 then
     yt-dlp -f mp4 --no-playlist -o - $URL | ffmpeg -ss $SKIP_DURATION \
         $OVERWRITE -i - \
         -vf "fps=$FPS,scale=360:-1:flags=lanczos,split[s0][s1];
         [s0]palettegen[p];[s1][p]paletteuse" -loop 0 $OUTPUT;
-elif [[ $(echo "$SKIP_DURATION <= 0" | bc -l) ]]
+elif (( $(echo "$SKIP_DURATION <= 0" | bc -l) ))
 then
     yt-dlp -f mp4 --no-playlist -o - $URL | ffmpeg -t $PLAY_DURATION $OVERWRITE\
         -i - \
